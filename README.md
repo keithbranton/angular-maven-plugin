@@ -81,4 +81,7 @@ With that in place you should be able to make a change to a template and see the
 
 The plugin adds some info to the maven log, which can be seen in the eclipse console if you choose the maven console. This can be helpful in diagnosing misconfiguration-type problems.
 
+Changes
+-------
+
 Feel free to fork if you'd rather take the plugin in a different direction. If you'd like to send me pull requests for improvements that you think could benefit the community I'd be happy to consider them.
