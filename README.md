@@ -1,7 +1,7 @@
 angular-maven-plugin
 ====================
 
-An eclipse compatible maven plugin that mimics grunt-html2js in combining html templates into a single javascript file for use with Angular.js
+An eclipse compatible maven plugin that mimics grunt-html2js in combining html templates into a single javascript file for use with Angular.js. It does NOT use grunt or node.
 
 This plugin currently only exposes one goal - html2js. 
 
