@@ -46,7 +46,7 @@ Using html2js with Eclipse (kepler)
 
 As I work I like the template.js file to be updated whenever I add/change/delete a template. The plugin is designed to be incremental build aware. To use it add the following section to your pom...
 
-  <build>
+	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -75,7 +75,7 @@ As I work I like the template.js file to be updated whenever I add/change/delete
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
-        ...
+				...
 
 With that in place you should be able to make a change to a template and see the result in your target file as soon as you save the change.
 
