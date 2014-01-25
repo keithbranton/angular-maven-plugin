@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.maven.model.Resource;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Component;
@@ -104,12 +103,6 @@ public class Html2jsMojo extends AbstractMojo {
 				doIt();
 			} catch (final Exception e) {
 				throw new MojoExecutionException("", e);
-			}
-
-			if (project != null) {
-				final Resource resource = new Resource();
-				resource.setDirectory(target.getParent());
-				project.addResource(resource);
 			}
 		} finally {
 			getLog().info("Html2js:: took " + (System.currentTimeMillis() - start) + "ms");
@@ -228,7 +221,7 @@ public class Html2jsMojo extends AbstractMojo {
 
 		// finally emit the output file
 		try {
-			getLog().info("Html2js:: AngularHtml2js writing output file: " + target.getName());
+			getLog().info("Html2js:: AngularHtml2js writing output file: " + target.getAbsolutePath());
 			FileUtils.writeLines(target, lines);
 		} catch (final IOException ex) {
 			throw new MojoExecutionException("Html2js:: Unable to write output file: " + target.getAbsolutePath(), ex);
