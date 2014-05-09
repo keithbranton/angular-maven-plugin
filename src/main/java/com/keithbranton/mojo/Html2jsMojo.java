@@ -196,7 +196,6 @@ public class Html2jsMojo extends AbstractMojo {
 		for (final File file : files) {
 			String shortName = file.getAbsolutePath().replace(sourceDir.getAbsolutePath(), "");
 			lines.add("angular.module('" + shortName + "', []).run(['$templateCache', function($templateCache) {");
-			lines.add("\t$templateCache.put('" + shortName + "',");
 
 			List<String> fileLines = null;
 			try {
@@ -204,11 +203,16 @@ public class Html2jsMojo extends AbstractMojo {
 			} catch (IOException ex) {
 				throw new MojoExecutionException("Html2js:: Unable to read template file: " + file.getAbsolutePath(), ex);
 			}
-			for (String line : fileLines) {
-				lines.add("\t\"" + line.replace("\\", "\\\\").replace("\"", "\\\"") + "\\n\" +");
+			if (fileLines.isEmpty()) {
+				lines.add("\t$templateCache.put('" + shortName + "', \"\");");
+			} else {
+				lines.add("\t$templateCache.put('" + shortName + "',");
+				for (String line : fileLines) {
+					lines.add("\t\"" + line.replace("\\", "\\\\").replace("\"", "\\\"") + "\\n\" +");
+				}
+				lines.set(lines.size() - 1, StringUtils.chomp(lines.get(lines.size() - 1), "\\n\" +") + "\");");
 			}
 
-			lines.set(lines.size() - 1, StringUtils.chomp(lines.get(lines.size() - 1), "\\n\" +") + "\");");
 			lines.add("}]);");
 			lines.add("");
 		}
