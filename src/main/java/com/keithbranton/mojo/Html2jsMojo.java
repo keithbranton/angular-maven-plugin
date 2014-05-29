@@ -49,6 +49,12 @@ public class Html2jsMojo extends AbstractMojo {
 	private String include;
 
 	/**
+	 * Prefix to put before the cache key
+	 */
+	@Parameter(defaultValue = "")
+	private String prefix;	
+	
+	/**
 	 * Comma separated list of patterns to identify files to be ignored
 	 */
 	@Parameter
@@ -188,13 +194,13 @@ public class Html2jsMojo extends AbstractMojo {
 		lines.add("angular.module('templates-main', ['" + Joiner.on("', '").join(Lists.transform(files, new Function<File, String>() {
 			@Override
 			public String apply(final File file) {
-				return file.getAbsolutePath().replace(sourceDir.getAbsolutePath(), "");
+				return prefix + file.getAbsolutePath().replace(sourceDir.getAbsolutePath(), "");
 			}
 		})) + "']);");
 		lines.add("");
 
 		for (final File file : files) {
-			String shortName = file.getAbsolutePath().replace(sourceDir.getAbsolutePath(), "");
+			String shortName = prefix + file.getAbsolutePath().replace(sourceDir.getAbsolutePath(), "");
 			lines.add("angular.module('" + shortName + "', []).run(['$templateCache', function($templateCache) {");
 
 			List<String> fileLines = null;
