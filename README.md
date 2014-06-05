@@ -20,7 +20,7 @@ To use the plugin add the following to the pom of the project containing the tem
 			<plugin>
 				<groupId>com.keithbranton.mojo</groupId>
 				<artifactId>angular-maven-plugin</artifactId>
-				<version>0.1-SNAPSHOT</version>
+				<version>0.1.2</version>
 				<executions>
 					<execution>
 						<phase>generate-resources</phase>
