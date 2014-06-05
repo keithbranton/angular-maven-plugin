@@ -51,9 +51,9 @@ public class Html2jsMojo extends AbstractMojo {
 	/**
 	 * Prefix to put before the cache key
 	 */
-	@Parameter(defaultValue = "")
-	private String prefix;	
-	
+	@Parameter
+	private String prefix;
+
 	/**
 	 * Comma separated list of patterns to identify files to be ignored
 	 */
@@ -86,6 +86,7 @@ public class Html2jsMojo extends AbstractMojo {
 		try {
 			includes = include == null ? null : include.split(",");
 			excludes = exclude == null ? null : exclude.split(",");
+			prefix = prefix == null ? "" : prefix;
 
 			getLog().debug("-------------------------------------------------");
 			getLog().debug("---Html2js Mojo ---------------------------------");
@@ -94,6 +95,7 @@ public class Html2jsMojo extends AbstractMojo {
 			getLog().debug("---excludes: " + (excludes == null ? "null" : Arrays.asList(excludes)));
 			getLog().debug("---target: " + target.getAbsolutePath());
 			getLog().debug("---addRequireWrapper: " + addRequireWrapper);
+			getLog().debug("---prefix: \"" + prefix + "\"");
 			getLog().debug("-------------------------------------------------");
 
 			if (!isBuildNeeded()) {
