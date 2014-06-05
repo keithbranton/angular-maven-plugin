@@ -35,6 +35,7 @@ To use the plugin add the following to the pom of the project containing the tem
 					<exclude>not-this.html</exclude>
 					<target>${basedir}/src/main/generated/js/templates.js</target>
 					<addRequireWrapper>true</addRequireWrapper>
+					<prefix>/templateCachePrefix</prefix>
 				</configuration>
 			</plugin>
 		  ...
@@ -85,3 +86,8 @@ Changes
 -------
 
 Feel free to fork if you'd rather take the plugin in a different direction. If you'd like to send me pull requests for improvements that you think could benefit the community I'd be happy to consider them.
+
+Thanks
+------
+
+Thanks to jkorri for adding the optional <prefix> configuration option, which adds the supplied prefix to the start of each template name in the template cache. 
