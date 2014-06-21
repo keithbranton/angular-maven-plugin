@@ -233,7 +233,7 @@ public class Html2jsMojo extends AbstractMojo {
 
 		// finally emit the output file
 		try {
-			getLog().info("Html2js:: AngularHtml2js writing output file: " + target.getAbsolutePath());
+			getLog().info("Html2js:: Writing output file: " + target.getAbsolutePath());
 			FileUtils.writeLines(target, lines);
 		} catch (final IOException ex) {
 			throw new MojoExecutionException("Html2js:: Unable to write output file: " + target.getAbsolutePath(), ex);
