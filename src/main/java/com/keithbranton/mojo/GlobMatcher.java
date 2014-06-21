@@ -4,8 +4,6 @@ import java.io.File;
 
 import org.codehaus.plexus.util.AbstractScanner;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class GlobMatcher {
 	private static class GlobScanner extends AbstractScanner {
 		private GlobScanner(final String[] globs) {
@@ -14,22 +12,22 @@ public class GlobMatcher {
 
 		@Override
 		public void scan() {
-			throw new NotImplementedException();
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
 		public String[] getIncludedFiles() {
-			throw new NotImplementedException();
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
 		public String[] getIncludedDirectories() {
-			throw new NotImplementedException();
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
 		public File getBasedir() {
-			throw new NotImplementedException();
+			throw new UnsupportedOperationException();
 		}
 
 		public boolean matches(final String name) {
