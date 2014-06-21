@@ -10,7 +10,7 @@
 
 	<groupId>com.keithbranton.mojo</groupId>
 	<artifactId>angular-maven-plugin</artifactId>
-	<version>0.3</version>
+	<version>0.3-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<url>https://github.com/keithbranton/angular-maven-plugin</url>
@@ -23,9 +23,9 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:git@github.com/keithbranton/angular-maven-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com/keithbranton/angular-maven-plugin.git</developerConnection>
-		<url>git@github.com/keithbranton/angular-maven-plugin.git</url>
+		<connection>scm:git:git@github.com:keithbranton/angular-maven-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:keithbranton/angular-maven-plugin.git</developerConnection>
+		<url>git@github.com:keithbranton/angular-maven-plugin.git</url>
 	</scm>
 
 	<properties>
