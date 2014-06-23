@@ -72,7 +72,7 @@ public class JoinMojo extends AbstractMojo {
 	/**
 	 * Comma separated list of patterns of the templates to process
 	 */
-	@Parameter(defaultValue = "*.html,utility/*.html")
+	@Parameter(defaultValue = "*.html")
 	private String templates;
 
 	/**
