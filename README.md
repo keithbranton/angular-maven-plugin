@@ -11,3 +11,10 @@ Mimics grunt-html2js in combining html templates into a single javascript file f
 ----
 a more complex goal designed to simplify assembly of a large modular angularjs application where modules are lazy loaded. The goal only deals with the reorganization of the code, not the lazy loading itself. 
  
+This plugin is hosted in Maven Central...
+
+    <plugin>
+        <groupId>com.keithbranton.mojo</groupId>
+        <artifactId>angular-maven-plugin</artifactId>
+        <version>0.3.1</version>
+    </plugin>
