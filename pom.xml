@@ -10,7 +10,7 @@
 
 	<groupId>com.keithbranton.mojo</groupId>
 	<artifactId>angular-maven-plugin</artifactId>
-	<version>0.3</version>
+	<version>0.3.1-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<url>https://github.com/keithbranton/angular-maven-plugin</url>
