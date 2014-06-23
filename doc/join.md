@@ -80,6 +80,7 @@ this will be changed to
 Configuration Options
 ---------------------
 
+Options | Description
 --- | ---
 **source** | the folder containing the source code and templates - defaults to /src/main/js
 **main** | the name of the main file - defaults to main.js
