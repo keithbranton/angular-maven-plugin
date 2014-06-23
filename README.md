@@ -10,6 +10,9 @@ Mimics grunt-html2js in combining html templates into a single javascript file f
 [join](doc/join.md)
 ----
 a more complex goal designed to simplify assembly of a large modular angularjs application where modules are lazy loaded. The goal only deals with the reorganization of the code, not the lazy loading itself. 
+
+Usage
+-----
  
 This plugin is hosted in Maven Central...
 
