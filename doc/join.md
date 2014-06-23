@@ -5,22 +5,22 @@ This goal is designed to build modular angularjs applications that are intended 
 
 There are probably a lot of assumptions made about project layout so I'm going to describe how I organize my angularjs code and what the results are.
 
-src/main/js/
-|__app.js
-|__main.js
-|__first
-|  |__firstModule.js
-|  |__template1.html
-|  |__firstDirectives.js
-|__second
-|  |__secondModule.js
-|  |__template2.js
-|  |__template3.js
-|__utility
-   |__commonDirectives.js
-   |__commonServices.js 
-   |__template4.js
-   |__template5.js
+	src/main/js/
+	|__app.js
+	|__main.js
+	|__first
+	|  |__firstModule.js
+	|  |__template1.html
+	|  |__firstDirectives.js
+	|__second
+	|  |__secondModule.js
+	|  |__template2.js
+	|  |__template3.js
+	|__utility
+	   |__commonDirectives.js
+   	   |__commonServices.js 
+	   |__template4.js
+	   |__template5.js
 
 When I use this goal...
 
@@ -45,11 +45,11 @@ When I use this goal...
 
 ...it produces:
 
-target/js/
-|__app.js
-|__main.js
-|__firstModule.js
-|__secondModule.js
+	target/js/
+	|__app.js
+	|__main.js
+	|__firstModule.js
+	|__secondModule.js
 
 **firstModule.js** declares a dependency on "/js/first/firstDirectives.js" to requirejs in a declare function. The declare is parsed (pretty naively, using a regex). The resulting firstModule.js will consist of firstDirectives.js, wrapped in an immediate function to prevent any contamination, then a template cache insertion statement like the html2js goal generates, then will return the result of an immediate function wrapping firstModule.js.
 
