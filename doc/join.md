@@ -80,14 +80,15 @@ this will be changed to
 Configuration Options
 ---------------------
 
-**source** - the folder containing the source code and templates - defaults to /src/main/js
-**main** - the name of the main file - defaults to main.js
-**app** - the name of the app file - defaults to app.js
-**modules** - a comma separated list of glob patterns that identify the starting point for a module, defaults to **/*Module.js
-**templates** - a comma separated list of glob patterns that identify html templates - defaults to *.html
-**joinable** - a comma separated list of glob patterns that identify dependencies that should be joined, defaults to /js/**/*.js/
-**target** - where to put the resulting files
-**prefix** - a prefix to add to all the template cache keys  
+
+**source**|the folder containing the source code and templates - defaults to /src/main/js
+**main**|the name of the main file - defaults to main.js
+**app**|the name of the app file - defaults to app.js
+**modules**|a comma separated list of glob patterns that identify the starting point for a module, defaults to **/*Module.js
+**templates**|a comma separated list of glob patterns that identify html templates - defaults to *.html
+**joinable**|a comma separated list of glob patterns that identify dependencies that should be joined, defaults to /js/**/*.js/
+**target**|where to put the resulting files
+**prefix**|a prefix to add to all the template cache keys  
 
 Using join with Eclipse (kepler)
 -----------------------------------
