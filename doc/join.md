@@ -61,33 +61,33 @@ When these modules are combined a new define call is generated combining all the
 
 Assuming **main.js** contains content such as
 
-require.config({
-	paths : {
-		'FirstModule' : '/js/first/firstModule',
-		'SecondModule' : '/js/second/secondModule'
-	}
-});
+	require.config({
+		paths : {
+			'FirstModule' : '/js/first/firstModule',
+			'SecondModule' : '/js/second/secondModule'
+		}
+	});
 
 this will be changed to 
 
-require.config({
-	paths : {
-		'FirstModule' : '/js/firstModule',
-		'SecondModule' : '/js/secondModule'
-	}
-});
+	require.config({
+		paths : {
+			'FirstModule' : '/js/firstModule',
+			'SecondModule' : '/js/secondModule'
+		}
+	});
 
 Configuration Options
 ---------------------
 
-source - the folder containing the source code and templates - defaults to /src/main/js
-main - the name of the main file - defaults to main.js
-app - the name of the app file - defaults to app.js
-modules - a comma separated list of glob patterns that identify the starting point for a module, defaults to **/*Module.js
-templates - a comma separated list of glob patterns that identify html templates - defaults to *.html
-joinable - a comma separated list of glob patterns that identify dependencies that should be joined, defaults to /js/**/*.js/
-target - where to put the resulting files
-prefix - a prefix to add to all the template cache keys  
+**source** - the folder containing the source code and templates - defaults to /src/main/js
+**main** - the name of the main file - defaults to main.js
+**app** - the name of the app file - defaults to app.js
+**modules** - a comma separated list of glob patterns that identify the starting point for a module, defaults to **/*Module.js
+**templates** - a comma separated list of glob patterns that identify html templates - defaults to *.html
+**joinable** - a comma separated list of glob patterns that identify dependencies that should be joined, defaults to /js/**/*.js/
+**target** - where to put the resulting files
+**prefix** - a prefix to add to all the template cache keys  
 
 Using join with Eclipse (kepler)
 -----------------------------------
