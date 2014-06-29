@@ -231,13 +231,13 @@ public class JoinMojo extends AbstractMojo {
 		}
 
 		// now the module - last because of the return
-		String moduleContents = module
-				.getContents()
-				.replaceAll("^\\s*define.*?function\\s*\\([^\\)]*\\)\\s*\\{", "return (function() {")
-				.replaceAll("\\s*\\}\\s*\\)\\s*;?\\s*$", "\n})();")
-				.replaceFirst(".module\\s*\\(([^,]+)\\s*,\\s*\\[\\s*([^\\]]+)\\]",
-						".module($1, [ \"" + module.getName() + "Templates\", $2]")//
-				.replaceFirst(".module\\s*\\(([^,]+)\\s*,\\s*\\[\\s*\\]", ".module($1, [ \"" + module.getName() + "Templates\" ]");
+		String moduleContents = module.getContents().replaceAll("^\\s*define.*?function\\s*\\([^\\)]*\\)\\s*\\{", "return (function() {")
+				.replaceAll("\\s*\\}\\s*\\)\\s*;?\\s*$", "\n})();");
+		if (module.hasTemplates()) {
+			moduleContents = moduleContents.replaceFirst(".module\\s*\\(([^,]+)\\s*,\\s*\\[\\s*([^\\]]+)\\]",
+					".module($1, [ \"" + module.getName() + "Templates\", $2]")//
+					.replaceFirst(".module\\s*\\(([^,]+)\\s*,\\s*\\[\\s*\\]", ".module($1, [ \"" + module.getName() + "Templates\" ]");
+		}
 		lines.add(moduleContents);
 
 		// the end for the define
