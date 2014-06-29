@@ -91,7 +91,7 @@ public class JoinMojo extends AbstractMojo {
 	 * Prefix to put before the cache key
 	 */
 	@Parameter(defaultValue = "")
-	private final String prefix = "";
+	private String prefix;
 
 	@Component(role = org.sonatype.plexus.build.incremental.BuildContext.class)
 	private BuildContext buildContext;
@@ -113,6 +113,7 @@ public class JoinMojo extends AbstractMojo {
 			modulesArray = modules == null ? null : modules.split(",");
 			templatesArray = templates == null ? null : templates.split(",");
 			joinableArray = joinable == null ? null : joinable.split(",");
+			prefix = prefix == null ? "" : prefix;
 
 			getLog().info("-------------------------------------------------");
 			getLog().info("---Join Mojo ------------------------------------");
