@@ -172,7 +172,7 @@ public class JoinMojo extends AbstractMojo {
 	}
 
 	private String shorten(final String absolute) {
-		return absolute.replace(source.getAbsolutePath(), "");
+		return absolute.replace(source.getAbsolutePath(), "").replace("\\", "/");
 	}
 
 	private void processMain(final Module main) throws Exception {

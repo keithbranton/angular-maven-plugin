@@ -19,5 +19,5 @@ This plugin is hosted in Maven Central...
     <plugin>
         <groupId>com.keithbranton.mojo</groupId>
         <artifactId>angular-maven-plugin</artifactId>
-        <version>0.3.1</version>
+        <version>0.3.2</version>
     </plugin>

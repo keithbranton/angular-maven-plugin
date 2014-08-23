@@ -12,7 +12,7 @@ To use the plugin add the following to the pom of the project containing the tem
 			<plugin>
 				<groupId>com.keithbranton.mojo</groupId>
 				<artifactId>angular-maven-plugin</artifactId>
-				<version>0.3.1</version>
+				<version>0.3.2</version>
 				<executions>
 					<execution>
 						<phase>generate-resources</phase>
@@ -83,3 +83,4 @@ Thanks
 ------
 
 Thanks to jkorri for adding the optional <prefix> configuration option, which adds the supplied prefix to the start of each template name in the template cache. 
+Thanks to cybercomkvint for reporting and supplying a pull request to correct a windows incompatibility.
