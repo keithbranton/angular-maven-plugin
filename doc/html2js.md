@@ -82,5 +82,6 @@ Feel free to fork if you'd rather take the plugin in a different direction. If y
 Thanks
 ------
 
-Thanks to jkorri for adding the optional <prefix> configuration option, which adds the supplied prefix to the start of each template name in the template cache. 
+Thanks to jkorri for adding the optional <prefix> configuration option, which adds the supplied prefix to the start of each template name in the template cache.
+
 Thanks to cybercomkvint for reporting and supplying a pull request to correct a windows incompatibility.
