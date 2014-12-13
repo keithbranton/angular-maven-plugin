@@ -26,7 +26,7 @@ import com.google.common.collect.Lists;
 
 /**
  * Maven/Java approximation of grunt-html2js functionality
- * 
+ *
  * @author Keith Branton
  */
 @Mojo(name = "html2js", defaultPhase = LifecyclePhase.GENERATE_RESOURCES)
@@ -41,6 +41,12 @@ public class Html2jsMojo extends AbstractMojo {
 	 */
 	@Parameter(defaultValue = "${basedir}/src/main/templates/", required = true)
 	private File sourceDir;
+
+	/**
+	 * Specifies the angular location in requireJS configuration.
+	 */
+	@Parameter(defaultValue = "angular")
+	private String angularDependency;
 
 	/**
 	 * Comma separated list of patterns to identify files to be treated as templates
@@ -91,6 +97,7 @@ public class Html2jsMojo extends AbstractMojo {
 			getLog().debug("-------------------------------------------------");
 			getLog().debug("---Html2js Mojo ---------------------------------");
 			getLog().debug("---sourceDir: " + sourceDir.getAbsolutePath());
+			getLog().debug("---angularDependency: " + angularDependency);
 			getLog().debug("---includes: " + (includes == null ? "null" : Arrays.asList(includes)));
 			getLog().debug("---excludes: " + (excludes == null ? "null" : Arrays.asList(excludes)));
 			getLog().debug("---target: " + target.getAbsolutePath());
@@ -119,7 +126,7 @@ public class Html2jsMojo extends AbstractMojo {
 
 	/**
 	 * We can skip if no files were deleted, modified or added since the last build AND the target file is still there
-	 * 
+	 *
 	 * @return true if a build is needed, otherwise false
 	 */
 	private boolean isBuildNeeded() {
@@ -185,7 +192,7 @@ public class Html2jsMojo extends AbstractMojo {
 		List<String> lines = new ArrayList<>();
 
 		if (addRequireWrapper) {
-			lines.add("define(['angular'], function (angular){");
+			lines.add("define(['" + angularDependency + "'], function (angular){");
 			lines.add("");
 		}
 
