@@ -36,6 +36,12 @@ public class Html2jsMojo extends AbstractMojo {
 	@Parameter(defaultValue = "${project}", readonly = true)
 	protected MavenProject project;
 
+  /**
+   * The name of the overall module to use for the templates
+   */
+  @Parameter(defaultValue = "templates-main", required = true)
+  private String moduleName;
+
 	/**
 	 * Specifies the source of the template files.
 	 */
@@ -96,6 +102,7 @@ public class Html2jsMojo extends AbstractMojo {
 
 			getLog().debug("-------------------------------------------------");
 			getLog().debug("---Html2js Mojo ---------------------------------");
+			getLog().debug("---moduleName: " + moduleName);
 			getLog().debug("---sourceDir: " + sourceDir.getAbsolutePath());
 			getLog().debug("---angularDependency: " + angularDependency);
 			getLog().debug("---includes: " + (includes == null ? "null" : Arrays.asList(includes)));
@@ -191,6 +198,9 @@ public class Html2jsMojo extends AbstractMojo {
 		Collections.sort(files);
 		List<String> lines = new ArrayList<>();
 
+		//FIXME make configurable
+		lines.add("/*jshint -W099 */");
+		
 		if (addRequireWrapper) {
 			lines.add("define(['" + angularDependency + "'], function (angular){");
 			lines.add("");
@@ -200,7 +210,7 @@ public class Html2jsMojo extends AbstractMojo {
 			getLog().debug("Html2js:: found: " + file.getName());
 		}
 
-		lines.add("angular.module('templates-main', ['" + Joiner.on("', '").join(Lists.transform(files, new Function<File, String>() {
+		lines.add("angular.module('" + moduleName + "', ['" + Joiner.on("', '").join(Lists.transform(files, new Function<File, String>() {
 			@Override
 			public String apply(final File file) {
 				return prefix + file.getAbsolutePath().replace(sourceDir.getAbsolutePath(), "").replace("\\", "/");
