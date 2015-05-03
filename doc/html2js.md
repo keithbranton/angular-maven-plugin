@@ -23,6 +23,7 @@ To use the plugin add the following to the pom of the project containing the tem
 				</executions>
 				<configuration>
 					<sourceDir>${basedir}/src/main/template/</sourceDir>
+					<angularDependency>angular</angularDependency>
 					<include>**/*.html</include>
 					<exclude>not-this.html</exclude>
 					<target>${basedir}/src/main/generated/js/templates.js</target>
@@ -82,5 +83,8 @@ Feel free to fork if you'd rather take the plugin in a different direction. If y
 Thanks
 ------
 
-Thanks to jkorri for adding the optional <prefix> configuration option, which adds the supplied prefix to the start of each template name in the template cache. 
+Thanks to jkorri for adding the optional <prefix> configuration option, which adds the supplied prefix to the start of each template name in the template cache.
+
 Thanks to cybercomkvint for reporting and supplying a pull request to correct a windows incompatibility.
+
+Thanks to yexela for submitting a pull request to allow the name of the angular dependency to be configured.
