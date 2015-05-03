@@ -27,7 +27,7 @@ When I use this goal...
 	<plugin>
 		<groupId>com.keithbranton.mojo</groupId>
 		<artifactId>angular-maven-plugin</artifactId>
-		<version>0.3.2</version>
+		<version>0.3.4</version>
 		<executions>
 			<execution>
 				<phase>generate-sources</phase>

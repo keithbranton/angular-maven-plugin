@@ -37,10 +37,22 @@ public class Html2jsMojo extends AbstractMojo {
 	protected MavenProject project;
 
 	/**
+	 * The name of the overall module to use for the templates
+	 */
+	@Parameter(defaultValue = "templates-main", required = true)
+	private String moduleName;
+
+	/**
 	 * Specifies the source of the template files.
 	 */
 	@Parameter(defaultValue = "${basedir}/src/main/templates/", required = true)
 	private File sourceDir;
+
+	/**
+	 * Specifies the angular location in requireJS configuration.
+	 */
+	@Parameter(defaultValue = "angular")
+	private String angularDependency;
 
 	/**
 	 * Comma separated list of patterns to identify files to be treated as templates
@@ -72,6 +84,18 @@ public class Html2jsMojo extends AbstractMojo {
 	@Parameter(defaultValue = "false", required = true)
 	private boolean addRequireWrapper;
 
+	/**
+	 * A flag to control multiModule mode - i.e. the generation of a module per template - for compatibility with the grunt task
+	 */
+	@Parameter(defaultValue = "false", required = true)
+	private boolean multiModule;
+
+	/**
+	 * Statements to insert at top of generated file - e.g. jshint directives
+	 */
+	@Parameter
+	private List<String> preambles;
+
 	@Component(role = org.sonatype.plexus.build.incremental.BuildContext.class)
 	private BuildContext buildContext;
 
@@ -90,12 +114,16 @@ public class Html2jsMojo extends AbstractMojo {
 
 			getLog().debug("-------------------------------------------------");
 			getLog().debug("---Html2js Mojo ---------------------------------");
+			getLog().debug("---moduleName: " + moduleName);
 			getLog().debug("---sourceDir: " + sourceDir.getAbsolutePath());
+			getLog().debug("---angularDependency: " + angularDependency);
 			getLog().debug("---includes: " + (includes == null ? "null" : Arrays.asList(includes)));
 			getLog().debug("---excludes: " + (excludes == null ? "null" : Arrays.asList(excludes)));
 			getLog().debug("---target: " + target.getAbsolutePath());
 			getLog().debug("---addRequireWrapper: " + addRequireWrapper);
 			getLog().debug("---prefix: \"" + prefix + "\"");
+			getLog().debug("---multiModule: " + multiModule);
+			getLog().debug("---preambles: " + preambles);
 			getLog().debug("-------------------------------------------------");
 
 			if (!isBuildNeeded()) {
@@ -184,8 +212,13 @@ public class Html2jsMojo extends AbstractMojo {
 		Collections.sort(files);
 		List<String> lines = new ArrayList<>();
 
+		// add the preambles
+		if (preambles != null) {
+			lines.addAll(preambles);
+		}
+
 		if (addRequireWrapper) {
-			lines.add("define(['angular'], function (angular){");
+			lines.add("define(['" + angularDependency + "'], function (angular){");
 			lines.add("");
 		}
 
@@ -193,18 +226,24 @@ public class Html2jsMojo extends AbstractMojo {
 			getLog().debug("Html2js:: found: " + file.getName());
 		}
 
-		lines.add("angular.module('templates-main', ['" + Joiner.on("', '").join(Lists.transform(files, new Function<File, String>() {
-			@Override
-			public String apply(final File file) {
-				return prefix + file.getAbsolutePath().replace(sourceDir.getAbsolutePath(), "").replace("\\", "/");
-			}
-		})) + "']);");
-		lines.add("");
+		if (multiModule) {
+			lines.add("angular.module('" + moduleName + "'" + ", ['"
+					+ Joiner.on("', '").join(Lists.transform(files, new Function<File, String>() {
+						@Override
+						public String apply(final File file) {
+							return prefix + file.getAbsolutePath().replace(sourceDir.getAbsolutePath(), "").replace("\\", "/");
+						}
+					})) + "']" + ");");
+			lines.add("");
+		} else {
+			lines.add("angular.module('" + moduleName + "', []).run(['$templateCache', function($templateCache) {");
+		}
 
 		for (final File file : files) {
 			String shortName = prefix + file.getAbsolutePath().replace(sourceDir.getAbsolutePath(), "").replace("\\", "/");
-			lines.add("angular.module('" + shortName + "', []).run(['$templateCache', function($templateCache) {");
-
+			if (multiModule) {
+				lines.add("angular.module('" + shortName + "', []).run(['$templateCache', function($templateCache) {");
+			}
 			List<String> fileLines = null;
 			try {
 				fileLines = FileUtils.readLines(file);
@@ -220,9 +259,13 @@ public class Html2jsMojo extends AbstractMojo {
 				}
 				lines.set(lines.size() - 1, StringUtils.chomp(lines.get(lines.size() - 1), "\\n\" +") + "\");");
 			}
-
+			if (multiModule) {
+				lines.add("}]);");
+				lines.add("");
+			}
+		}
+		if (!multiModule) {
 			lines.add("}]);");
-			lines.add("");
 		}
 
 		if (addRequireWrapper) {
