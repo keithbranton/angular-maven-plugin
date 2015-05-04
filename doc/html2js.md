@@ -29,11 +29,15 @@ To use the plugin add the following to the pom of the project containing the tem
 					<target>${basedir}/src/main/generated/js/templates.js</target>
 					<addRequireWrapper>true</addRequireWrapper>
 					<prefix>/templateCachePrefix</prefix>
+					<multiModule>true</multiModule>
+					<preambles>
+						<preamble>/*jshint -W099 */</preamble>
+					</preambles>
 				</configuration>
 			</plugin>
 		  ...
 
-The above shows examples of the configuration parameters available. The values shown for sourceDir, include and target are the default values provided by the plugin. By default there is no exclude or prefix and addRequireWrapper is false.
+The above shows examples of the configuration parameters available. The values shown for sourceDir, include and target are the default values provided by the plugin. By default there is no exclude or prefix, addRequireWrapper is false, multiModule is false (added in 0.3.4 - changes behavior). Preambles are statements that are added at the top of the generated output - there are none by default.
 
 Using html2js with Eclipse (kepler)
 -----------------------------------
